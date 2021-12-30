@@ -1,0 +1,27 @@
+<header>
+  <nav>
+    <div fxFlex fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+      <div fxFlex="40">
+        <a mat-raised-button [routerLink]="routesConfig.routes.home" i18n>
+          Home
+        </a>
+        <a mat-raised-button *ngIf='isLoggedIn' [routerLink]="routesConfig.routes.hero.myHeroes" i18n>My Heroes</a>
+      </div>
+      <div fxFlex class="text--right">
+        <app-search-bar></app-search-bar>
+       
+     
+        <a mat-raised-button *ngIf='!isLoggedIn' [routerLink]="routesConfig.routes.auth.signUp" i18n>
+          Sign Up
+        </a>
+        <a mat-raised-button *ngIf='!isLoggedIn' [routerLink]="routesConfig.routes.auth.logIn" i18n>
+          Log In
+        </a>
+       
+        <a mat-raised-button *ngIf='isLoggedIn' (click)='logOut()'>
+          Log out
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="120 seconds">
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/citylist_backend.log</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p}
+				${PID:- } [%t][%file:%line] : %m%n
+
+			</Pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>./logs/citylist_backend.%d{yyyy-MM-dd}.%i.log.gz
+			</fileNamePattern>
+			<maxFileSize>90MB</maxFileSize>
+			<totalSizeCap>5GB</totalSizeCap>
+
+			<maxHistory>20</maxHistory>
+		</rollingPolicy>
+	</appender>
+	<appender name="Console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p}
+				${PID:- } %-40.40logger{39} : [%t][%file:%line] : %m%n
+			</Pattern>
+		</layout>
+	</appender>
+
+	<logger name="org.hibernate.type" level="ERROR" />
+	<logger name="org.hibernate" level="ERROR" />
+
+
+	<logger name="com.citylist.backend" level="INFO"
+		additivity="false">
+
+		<appender-ref ref="FILE" />
+		<appender-ref ref="Console" />
+	</logger>
+
+	<root level="info">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="Console" />
+
+	</root>
+
+</configuration>
+
