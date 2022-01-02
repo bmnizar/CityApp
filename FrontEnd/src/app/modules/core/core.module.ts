@@ -10,7 +10,7 @@ import { ROUTES_CONFIG, RoutesConfig } from '../../configs/routes.config';
 import { ENDPOINTS_CONFIG, EndpointsConfig } from '../../configs/endpoints.config';
 import { SentryErrorHandler } from './sentry.errorhandler';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { StorageService } from '../../shared/services/storage.service';
+import { StorageService } from '../../services/StorageService';
 
 @NgModule({
   imports: [

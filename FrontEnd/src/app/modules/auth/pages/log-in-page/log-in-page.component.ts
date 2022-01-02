@@ -57,11 +57,14 @@ export class LogInPageComponent {
       let thiss=this;
       this.signService.login(applicationUser)
         .subscribe((response: any) => {
-          thiss.storageService.setCookie("userIsConnected","true");
-          if ( (response =="true")) {
+         
+          
+          if ( (response !="false")) {
+            thiss.storageService.setCookie("userIsConnected","true"); 
+            localStorage.setItem('connectedUser', JSON.stringify(response));
             this.router.navigate([RoutesConfig.routes.hero.myHeroes]);
           } else   {
-            thiss.messageService.add({severity:'error', summary:'Wrong username or password', detail:'Login'});
+            thiss.messageService.add({severity:'error', summary:'Login', detail:'Wrong username or password' });
               
           }
         });

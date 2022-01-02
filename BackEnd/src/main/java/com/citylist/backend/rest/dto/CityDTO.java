@@ -1,5 +1,7 @@
 package com.citylist.backend.rest.dto;
 
+import com.citylist.backend.entities.City;
+
 /**
  ** @BMN 2021
  **
@@ -7,6 +9,24 @@ package com.citylist.backend.rest.dto;
 public class CityDTO {
 	private String name;
 	private byte[] image;
+	private Integer id ;
+	private Integer totalRows ;
+	
+	public Integer getTotalRows() {
+		return totalRows;
+	}
+
+	public void setTotalRows(Integer totalRows) {
+		this.totalRows = totalRows;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

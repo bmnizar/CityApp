@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-12-30T11:31:26+0100",
+    date = "2022-01-02T17:41:03+0100",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 1.8.0_281 (Oracle Corporation)"
 )
 @Component
@@ -52,6 +52,26 @@ public class MapStructMapperImpl implements MapStructMapper {
     }
 
     @Override
+    public CityDTO convertCityTOCtiyDTO(City city) {
+        if ( city == null ) {
+            return null;
+        }
+
+        CityDTO cityDTO = new CityDTO();
+
+        if ( city.getId() != null ) {
+            cityDTO.setId( city.getId().intValue() );
+        }
+        cityDTO.setName( city.getName() );
+        byte[] image = city.getImage();
+        if ( image != null ) {
+            cityDTO.setImage( Arrays.copyOf( image, image.length ) );
+        }
+
+        return cityDTO;
+    }
+
+    @Override
     public List<CityDTO> convertListCityTOCtiyDTO(List<City> city) {
         if ( city == null ) {
             return null;
@@ -59,7 +79,7 @@ public class MapStructMapperImpl implements MapStructMapper {
 
         List<CityDTO> list = new ArrayList<CityDTO>( city.size() );
         for ( City city1 : city ) {
-            list.add( cityToCityDTO( city1 ) );
+            list.add( convertCityTOCtiyDTO( city1 ) );
         }
 
         return list;
@@ -141,21 +161,5 @@ public class MapStructMapperImpl implements MapStructMapper {
         }
 
         return collection1;
-    }
-
-    protected CityDTO cityToCityDTO(City city) {
-        if ( city == null ) {
-            return null;
-        }
-
-        CityDTO cityDTO = new CityDTO();
-
-        cityDTO.setName( city.getName() );
-        byte[] image = city.getImage();
-        if ( image != null ) {
-            cityDTO.setImage( Arrays.copyOf( image, image.length ) );
-        }
-
-        return cityDTO;
     }
 }

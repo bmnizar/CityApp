@@ -7,17 +7,21 @@ import { MainCityBoardComponent } from './pages/main-city-board/main-city-board'
 import { RootRoutingModule } from './root-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {FileUploadModule} from 'primeng/fileupload';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
 import {DataViewModule} from 'primeng/dataview';
 import {ImageModule} from 'primeng/image';
+import { SignService } from '../../services/SignService';
+import { CityService } from '../../services/CityService';
+import { TableModule } from 'primeng/table';
+import {InputTextModule} from 'primeng/inputtext';
 @NgModule({
-  imports: [
+  imports: [FormsModule,InputTextModule,
     CommonModule,MessagesModule,MessagesModule,DataViewModule,ImageModule,
-    ReactiveFormsModule,FileUploadModule,ToastModule,MessageModule,
+    ReactiveFormsModule,FileUploadModule,ToastModule,MessageModule,TableModule,
     SharedModule,
     RootRoutingModule
   ],
@@ -34,6 +38,10 @@ import {ImageModule} from 'primeng/image';
     HeaderComponent,
     SearchBarComponent,
     FooterComponent
+  ],
+  providers: [
+    
+    SignService,CityService
   ]
 })
 

@@ -1,43 +1,57 @@
-<p-toast  position="top-center" life="8000" [style]="{width: '1000px'}"></p-toast>
-ssss
-<p-fileUpload name="myfile[]" [url]="this.uploadUrl"  (onUpload)="onUpload($event)" ></p-fileUpload>
+<p-toast position="top-center" life="8000" [style]="{width: '1000px'}"></p-toast>
 
-ssssfdfdsfsdfs
+<p>
+    <p-fileUpload name="myfile[]" [url]="this.uploadUrl" (onUpload)="onUpload($event)"></p-fileUpload>
 
-<p-table [value]="listOfCities" dataKey="id" responsiveLayout="scroll">
-    <ng-template pTemplate="header">
-        <tr>
-            
-            <th>Name</th>
-            <th>Photo</th>
-             
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-cptCity>
-        <tr>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="cptCity.name">
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{cptCity.name}}
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-             
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="product.price">
-                        <p-fileUpload name="changePhoto" [url]="this.uploadUrl"  (onUpload)="onUploadChangeCityImage($event)" ></p-fileUpload>
 
+</p>
+<p> 
+                  
+                  <p-table [value]="listOfCities" (onEditComplete)="onEditCityName($event)"  [loading]="loading"  dataKey="id" [globalFilterFields]="['Name']" [totalRecords]="totalRecords"
+                      [paginator]="true" [rows]="10"
+                    responsiveLayout="scroll"  [lazy]="true" (onLazyLoad)="onLoadCityTable($event)"
+                     >
+                    <ng-template pTemplate="header"> 
+                        <tr>
+
+                            <th>
+                                <div class="p-d-flex p-jc-between p-ai-center">
+                                    Name
+                                    <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                                </div>
+                            </th>
+                            <th>Photo</th>
+
+                        </tr>
                     </ng-template>
-                    <ng-template pTemplate="output">
-                        <p-image src="assets/images/galleria/og.jpg" alt="Image" width="250"></p-image>
+                    <ng-template pTemplate="body" let-cptCity>
+                        <tr>
+                            <td  [pEditableColumn]="cptCity"   pEditableColumnField="name"  [ngClass]="{'disable-td' : isEditRoleUser()}">
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+                                        <input pInputText type="text" [(ngModel)]="cptCity.name">
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        {{cptCity.name}}  
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+
+                            <td>
+                                <p-cellEditor>
+                                    <ng-template pTemplate="input">
+
+                                        <p-fileUpload name="changePhoto" [url]="this.uploadUrl"
+                                            (onUpload)="onUploadChangeCityImage($event)"></p-fileUpload>
+
+                                    </ng-template>
+                                    <ng-template pTemplate="output">
+                                        <p-image [src]="cptCity.imageUrl" alt="Image" width="250"></p-image>
+                                    </ng-template>
+                                </p-cellEditor>
+                            </td>
+                        </tr>
                     </ng-template>
-                </p-cellEditor>
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+                </p-table>
+
+            </p>

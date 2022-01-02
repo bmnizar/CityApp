@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DOCUMENT } from '@angular/common';
 import { RoutesConfig } from './configs/routes.config';
-import { UtilsHelperService } from './modules/core/services/utils-helper.service';
+import { UtilsHelperService } from './services/utils-helper.service';
 
 declare const Modernizr: any;
 
@@ -46,10 +46,10 @@ export class AppComponent implements OnInit {
             });
             break;
           case '/' + RoutesConfig.routesNames.hero.basePath:
-            this.title.setTitle('Heroes list');
+            this.title.setTitle('CityAppFrontEnd');
             this.meta.updateTag({
               name: 'description',
-              content: 'Heroes meta description'
+              content: 'City App meta description'
             });
             break;
         }

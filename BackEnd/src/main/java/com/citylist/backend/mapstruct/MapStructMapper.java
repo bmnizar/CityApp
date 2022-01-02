@@ -22,6 +22,6 @@ public interface MapStructMapper {
 
 	@InheritInverseConfiguration
 	ApplicationUser applicationUserDTOToEntity(ApplicationUserDTO applicationUser);
-
+	CityDTO convertCityTOCtiyDTO(City city);
 	List<CityDTO> convertListCityTOCtiyDTO(List<City> city);
 }

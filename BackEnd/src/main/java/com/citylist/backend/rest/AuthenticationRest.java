@@ -13,6 +13,8 @@ import com.citylist.backend.mapstruct.MapStructMapper;
 import com.citylist.backend.rest.dto.ApplicationUserDTO;
 import com.citylist.backend.services.UserService;
 import com.citylist.backend.utils.CityAppUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping(CityAppUtils.GENERAL_REST_URL + "/AuthenticationRest")
@@ -22,7 +24,8 @@ public class AuthenticationRest {
 	private UserService userService;
 	@Autowired
 	private MapStructMapper mapstructMapper;
- 
+	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
 	@PostMapping(value = "/signup") //
 	@ResponseBody
 	public String signup(@RequestBody ApplicationUserDTO applicationUser) {
@@ -31,11 +34,21 @@ public class AuthenticationRest {
 		return JSONObject.quote(USER_PERSISTED_SUCCESSFULLY);
 
 	}
+
 	@PostMapping(value = "/login") //
 	@ResponseBody
-	public String login(@RequestBody ApplicationUserDTO applicationUser) {
-		 Boolean validUser=userService.login(applicationUser);
-		return JSONObject.quote(validUser.toString());
+	public String login(@RequestBody ApplicationUserDTO applicationUser) throws JsonProcessingException {
+		ApplicationUserDTO validUser = userService.login(applicationUser);
+ 
+		String toBeReterned = null;
+		if (validUser == null) {
+			toBeReterned = JSONObject.quote("false");
+		} else {
+			validUser.setPassword(null);  
+			toBeReterned = OBJECT_MAPPER.writeValueAsString(validUser);
+
+		}
+		return toBeReterned;
 
 	}
 

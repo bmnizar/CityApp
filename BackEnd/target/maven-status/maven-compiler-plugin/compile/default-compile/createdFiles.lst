@@ -20,7 +20,6 @@ com\citylist\backend\dao\ApplicationRoleRepository.class
 com\citylist\backend\entities\ApplicationRole.class
 com\citylist\backend\entities\ApplicationUser.class
 com\citylist\backend\rest\dto\ApplicationRoleDTO.class
-com\citylist\backend\core\DispatcherServlet1.class
 com\citylist\backend\core\CityUrlException.class
 com\citylist\backend\MainCityBackend.class
 com\citylist\backend\rest\dto\CityDTO.class

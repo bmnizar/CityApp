@@ -6,10 +6,10 @@
 
 # BlueJ files
 *.ctxt
-node_modules
+./FrontEnd/node_modules
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
+./Backend/target
 # Package Files #
 *.jar
 *.war

@@ -11,6 +11,6 @@ public interface UserService {
 
 	void save(ApplicationUser applicationUser);
 
-	Boolean login(ApplicationUserDTO applicationUser);
+	ApplicationUserDTO login(ApplicationUserDTO applicationUser);
 
 }

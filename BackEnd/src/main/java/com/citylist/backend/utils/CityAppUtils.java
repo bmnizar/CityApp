@@ -10,8 +10,10 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.commons.io.IOUtils;
 
 import com.citylist.backend.core.CityBackendRuntimeException;
-import com.citylist.backend.core.CityListBackendException;
+import com.citylist.backend.core.CityListConfig;
 import com.citylist.backend.core.CityUrlException;
+import com.citylist.backend.entities.City;
+import com.citylist.backend.rest.dto.CityDTO;
 
 /**
  ** @BMN 2021
@@ -27,6 +29,11 @@ public class CityAppUtils {
 
 			e.printStackTrace();
 		}
+	}
+
+	public static CityDTO fromEntity(City c) {
+		return CityListConfig.getMapStructMapper().convertCityTOCtiyDTO(c);
+
 	}
 
 	public static String hash256String(String word) {
@@ -52,14 +59,19 @@ public class CityAppUtils {
 		return hexString.toString();
 	}
 
-	public static byte[] copyUrlToBytes(URL url) throws CityUrlException {
+	public static byte[] copyUrlToBytes(boolean byPassUnresolvedCity, URL url) throws CityUrlException {
 		try {
 			InputStream openStream = url.openStream();
 			return IOUtils.toByteArray(openStream);
 		} catch (IOException e) {
 
 		}
-		throw new CityUrlException("Can not open url " + url);
+
+		if (byPassUnresolvedCity) {
+			return null;
+		} else {
+			throw new CityUrlException("Can not open url " + url);
+		}
 
 	}
 }

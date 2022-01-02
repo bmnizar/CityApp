@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RoutesConfig } from '../../configs/routes.config';
 import { MainCityBoardComponent } from './pages/main-city-board/main-city-board';
 import { MainCityBoardGuard } from './MainCityBoardGuard';
+
 const routesNames = RoutesConfig.routesNames;
 
 const rootRoutes: Routes = [
@@ -17,6 +18,10 @@ const rootRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    
+    MainCityBoardGuard
   ]
 })
 

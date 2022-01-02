@@ -18,6 +18,7 @@ import com.citylist.backend.dao.ApplicationRoleRepository;
 import com.citylist.backend.dao.UserRepository;
 import com.citylist.backend.entities.ApplicationRole;
 import com.citylist.backend.entities.ApplicationUser;
+import com.citylist.backend.mapstruct.MapStructMapper;
 import com.citylist.backend.rest.dto.ApplicationUserDTO;
 import com.citylist.backend.services.UserService;
 import com.citylist.backend.utils.CityAppUtils;
@@ -36,6 +37,8 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 	@Autowired
 	private UserDetailsService userDetailsService;
+	@Autowired
+	private MapStructMapper mapstructMapper;
 
 	@Override
 	public void save(ApplicationUser applicationUser) {
@@ -52,7 +55,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean login(ApplicationUserDTO applicationUser) {
+	public ApplicationUserDTO login(ApplicationUserDTO applicationUser) {
 		/**
 		 * We did name it like this to obuscute a little bit in case some hacker
 		 * decompile our code :) :)
@@ -61,16 +64,18 @@ public class UserServiceImpl implements UserService {
 		ApplicationUser findByUsernameAndPassword = userRepository
 				.findByUsernameAndPassword(applicationUser.getUsername(), kle);
 		if (findByUsernameAndPassword == null) {
-			return false;
+			return null;
 		}
 		UserDetails loadUserByUsername = userDetailsService.loadUserByUsername(applicationUser.getUsername());
 		if (loadUserByUsername == null) {
-			return false;
+			return null;
 		}
 		final Authentication auth = new UsernamePasswordAuthenticationToken(applicationUser.getUsername(), null,
 				loadUserByUsername.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(auth);
-		return true;
+		
+		return mapstructMapper.applicationUserEntityToDTO(findByUsernameAndPassword);
+
 	}
 
 }

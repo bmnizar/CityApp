@@ -3,7 +3,7 @@ import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { v4 as uuid4 } from 'uuid';
-import { StorageService } from '../../../shared/services/storage.service';
+import { StorageService } from '../../../services/StorageService';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {

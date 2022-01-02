@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
  
-import { Observable } from 'rxjs';
  
-import { EventsService, EventsTypes } from '../../../core/services/events.servide';
-
+ 
+ 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -13,8 +12,7 @@ import { EventsService, EventsTypes } from '../../../core/services/events.servid
 export class HomePageComponent implements OnInit {
  
 
-  constructor( 
-              private eventsService: EventsService) {
+  constructor() {
     // @ts-ignore
     if (window.Cypress) {
       // @ts-ignore

@@ -10,8 +10,7 @@ import { NgxScrollToFirstInvalidModule } from '@ismaestro/ngx-scroll-to-first-in
 import { LoadingPlaceholderComponent } from './components/loading-placeholder/loading-placeholder.component';
 import { CapitalizeFirstPipe } from './pipes/capitalize-first.pipe';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { HeroLoadingComponent } from './components/hero-loading/hero-loading.component';
-import { HeroCardComponent } from './components/hero-card/hero-card.component';
+ 
 
 @NgModule({
   imports: [
@@ -27,9 +26,7 @@ import { HeroCardComponent } from './components/hero-card/hero-card.component';
   declarations: [
     SpinnerComponent,
     LoadingPlaceholderComponent,
-    CapitalizeFirstPipe,
-    HeroLoadingComponent,
-    HeroCardComponent,
+    CapitalizeFirstPipe 
   ],
   exports: [
     CommonModule,
@@ -40,9 +37,7 @@ import { HeroCardComponent } from './components/hero-card/hero-card.component';
     NgxScrollToFirstInvalidModule,
     LoadingPlaceholderComponent,
     CapitalizeFirstPipe,
-    LazyLoadImageModule,
-    HeroLoadingComponent,
-    HeroCardComponent,
+    LazyLoadImageModule 
   ]
 })
 

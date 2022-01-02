@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { fadeIn } from 'ng-animate';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+ 
  
 import { RoutesConfig } from '../../../../configs/routes.config';
 import { Router } from '@angular/router';
@@ -33,9 +33,8 @@ export class SignUpPageComponent {
   availableRoles: string[] = ['ROLE_STAFF', 'ROLE_ADMIN', 'ROLE_ALLOW_EDIT'];
   
   constructor(private formBuilder: FormBuilder,private signService:SignService,
-              private authService: AuthService,
-              private router: Router,
-              private utilsService: UtilsService
+               
+              private router: Router 
   ) {
     this.signUpForm = this.formBuilder.group({
       username: this.username,
